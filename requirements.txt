@@ -1,0 +1,4 @@
+streamlit
+lightgbm
+scikit-learn
+numpy
