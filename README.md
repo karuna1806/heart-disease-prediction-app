@@ -415,4 +415,5 @@ It is an end-to-end ML deployment system.
 ![WhatsApp Image 2026-02-27 at 04 44 10](https://github.com/user-attachments/assets/1d5aa5fd-074d-4241-b74e-7e633e0332a1)
 ![WhatsApp Image 2026-02-27 at 04 44 101](https://github.com/user-attachments/assets/411d2d6d-539d-4475-8b4e-369b6417325a)
 
-Live URL link "http://100.31.188.39:8501" It might not be running after some times when I stops EC2 server from AWS.
+Live URL link "http://100.31.188.39:8501" It might not be running after I stopped EC2 server from AWS.
+
