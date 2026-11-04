@@ -1,20 +1,21 @@
 # Heart Disease Prediction — End-to-End ML Deployment
 
-A cardiovascular-risk classifier trained on Kaggle data, served through a Streamlit
-interface, containerised with Docker and deployed on AWS EC2.
+I built a cardiovascular-risk classifier, wrapped it in a Streamlit interface,
+containerised it with Docker and deployed it on AWS EC2 — taking a model all the way
+from a Kaggle notebook to a running public service.
 
 **Model:** LightGBM · **Validation:** 0.948 ROC AUC on the Kaggle leaderboard
-([notebook](https://www.kaggle.com/code/karuna2k/heart-disease-prediction-ml-lightgbm-s6e2))
+([my notebook](https://www.kaggle.com/code/karuna2k/heart-disease-prediction-ml-lightgbm-s6e2))
 
-> ⚠️ This is a learning/portfolio project, **not** a medical device. It must not be used
-> for real clinical decisions.
+> ⚠️ I built this as a learning/portfolio project, **not** a medical device. It must not
+> be used for real clinical decisions.
 
 ## What it does
 
-Given 13 clinical parameters (age, sex, chest-pain type, resting BP, cholesterol, fasting
+I take 13 clinical parameters (age, sex, chest-pain type, resting BP, cholesterol, fasting
 blood sugar, rest ECG, max heart rate, exercise-induced angina, ST depression, slope,
-number of major vessels, thalassemia) the app returns a calibrated probability of heart
-disease and a low / moderate / high risk band.
+number of major vessels, thalassemia) and return a probability of heart disease along with
+a low / moderate / high risk band.
 
 ## Stack
 
@@ -25,35 +26,35 @@ disease and a low / moderate / high risk band.
 | Packaging | Docker |
 | Hosting | AWS EC2 (Amazon Linux 2023) |
 
-## Run locally
+## Run it locally
 
 ```bash
 pip install -r requirements.txt
 streamlit run app.py          # http://localhost:8501
 ```
 
-## Run with Docker
+## Run it with Docker
 
 ```bash
 docker build -t heart-app .
 docker run -d -p 8501:8501 heart-app
 ```
 
-A prebuilt image is published to Docker Hub:
+I also published a prebuilt image to Docker Hub:
 
 ```bash
 docker pull karuna18/heart-app:latest
 docker run -d -p 8501:8501 --restart unless-stopped karuna18/heart-app:latest
 ```
 
-## Deployment notes (AWS EC2)
+## How I deployed it (AWS EC2)
 
-The container was pulled from Docker Hub onto an EC2 instance and run on port 8501.
-Reaching it required opening the port in the instance Security Group — a reminder that
+I pulled the image from Docker Hub onto an EC2 instance and ran it on port 8501. Getting it
+reachable meant opening the port in the instance Security Group — a good reminder that
 deployment is as much networking as modelling.
 
-For a real deployment, terminate HTTPS at an Nginx/ALB reverse proxy and restrict the
-Security Group to known sources rather than exposing the app port directly.
+If I were to run this for real, I'd terminate HTTPS at an Nginx/ALB reverse proxy and
+restrict the Security Group to known sources rather than exposing the app port directly.
 
 ## Repository layout
 
@@ -64,8 +65,8 @@ requirements.txt   Python dependencies
 Dockerfile         container build
 ```
 
-## Roadmap
+## What I'd add next
 
-- GitHub Actions: build + push image on every commit
+- GitHub Actions to build + push the image on every commit
 - Nginx reverse proxy with HTTPS
 - Input validation and model-version pinning
